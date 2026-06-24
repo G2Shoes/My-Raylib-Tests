@@ -11,9 +11,9 @@ import (
 )
 
 const (
-	TILE   = 32
-	WIDTH  = 512
-	HEIGHT = 512
+	TILE   = 32 // Image size (32x32)
+	WIDTH  = 512 // Window size (color map image size x 32, 20 x 32 = 512)
+	HEIGHT = 512 // Window size (color map image size x 32, 20 x 32 = 512)
 )
 
 func Generate(grass *[]Floor, wall *[]Wall) {
@@ -40,8 +40,8 @@ func Generate(grass *[]Floor, wall *[]Wall) {
 			c := color.NRGBAModel.Convert(img.At(x, y)).(color.NRGBA)
 
 			if c.R == 0 && c.G == 0 && c.B == 0 && c.A == 255 {
-				newX := float32(x * TILE)
-				newY := float32(y * TILE)
+				newX := float32(x * TILE) // 1 * 32
+				newY := float32(y * TILE) // 1 * 32
 
 				*wall = append(*wall, Wall{
 					position: rl.NewVector2(newX, newY),
@@ -49,8 +49,8 @@ func Generate(grass *[]Floor, wall *[]Wall) {
 			}
 
 			if c.R == 255 && c.G == 0 && c.B == 0 && c.A == 255 {
-				newX := float32(x * TILE)
-				newY := float32(y * TILE)
+				newX := float32(x * TILE)// 1 * 32
+				newY := float32(y * TILE)// 1 * 32
 
 				*grass = append(*grass, Floor{
 					position: rl.NewVector2(newX, newY),
@@ -76,7 +76,7 @@ func main() {
 
 	rl.SetTargetFPS(60)
 
-	Init()
+	Init() // Debug
 
 	var grass []Floor
 	var walls []Wall
@@ -92,7 +92,7 @@ func main() {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.Black)
 		Paint(wallTex, floorTex, grass, walls)
-		DrawTextAnchored("Pixel Generation Test", 0, 25, rl.RayWhite)
+		DrawTextAnchored("Color Map Test", 0, 25, rl.RayWhite)
 		rl.EndDrawing()
 	}
 }
