@@ -12,8 +12,8 @@ import (
 
 const (
 	TILE   = 32 // Image size (32x32)
-	WIDTH  = 512 // Window size (color map image size x 32, 20 x 32 = 512)
-	HEIGHT = 512 // Window size (color map image size x 32, 20 x 32 = 512)
+	WIDTH  = 512 // Window size (color map image size x 32, 16 x 32 = 512, where 32 is the size of the tile)
+	HEIGHT = 512 // Window size (color map image size x 32, 16 x 32 = 512, where 32 is the size of the tile)
 )
 
 func Generate(grass *[]Floor, wall *[]Wall) {
